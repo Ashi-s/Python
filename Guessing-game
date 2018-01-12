@@ -1,0 +1,28 @@
+import random
+cGuess = random.randint(1,6)
+print("Computer has guessed the Number. It's your turn to Guess\nBEST OF LUCK!")
+uGuess = input("Guess your Number: ")
+
+def func(uGuess):
+    if int(uGuess)>cGuess:
+        print("Oops! Your's Guess is higher than the computer Guess")
+        reFunc()
+    elif int(uGuess)<cGuess:
+        print("Oops! Your's Guess is lower than the computer Guess")
+        reFunc()
+    elif int(uGuess)==cGuess:
+        print("Eureka! You got the perfect number")
+        exit()
+    else:
+        print("Invalid")
+
+def reFunc():
+    print("Would you like to guess another number")
+    uGuess= input("Enter another Number: ")
+    func(uGuess)
+
+if(int(uGuess)>0 and int(uGuess)<7):
+    func(uGuess)
+else:
+    print("You need to a Guess a Number Between 1-6")
+    reFunc()
