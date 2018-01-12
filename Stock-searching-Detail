@@ -1,0 +1,36 @@
+import re
+import urllib.request
+#https://www.google.co.in/search?tbm=fin&ei=pfVVWoPWBcbbvATzk47QDA&q=
+
+url = "https://in.finance.yahoo.com/quote/"
+stock = input("Enter the name of the stock")
+url =url + stock
+print(url)
+
+data = urllib.request.urlopen(url).read()
+data1 = data.decode("utf-8")
+print(data1)
+
+item = re.search('"regularMarketPrice"', data1)
+print(item)
+
+start = item.start()
+end = start + 50
+print(start)
+print(end)
+
+newString = data1[start: end]
+print(newString)
+item = re.search('"raw":', newString)
+start = item.end()
+print(start)
+newString1 = newString[start:]
+print(newString1)
+item1 = re.search(',"fmt"', newString)
+print(item1)
+end = item1.start()
+print(end)
+newString2 = newString[start:end]
+
+
+print("The Stock of "+ stock + " is "+ newString2)
