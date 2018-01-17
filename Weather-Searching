@@ -1,0 +1,23 @@
+import re
+import urllib.request
+
+# https://www.weather-forecast.com/locations/Paris/forecasts/latest
+city = input("Enter City Name: ")
+
+url = "https://www.weather-forecast.com/locations/"+ city + "/forecasts/latest"
+print("Weather data are taken from www.weather-forecast.com")
+
+data = urllib.request.urlopen(url).read()
+data1 = data.decode("UTF-8")
+#print(data1)
+
+m = re.search('span class="phrase"', data1)
+start = m.end()
+end = start + 300
+newString = data1[start:end]
+#print(newString)
+
+m= re.search("</span>", newString)
+end = m.start()
+newString1 = newString[0:end]
+print(newString1)
